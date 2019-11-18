@@ -23,26 +23,9 @@ const useStyles = makeStyles(({ spacing }) => ({
   }
 }));
 
-export default function Setter({ id, initialValue, toggleChange }) {
+export default function Setter({ id, initialValue }) {
   const [value, setValue] = useState(initialValue);
   const classes = useStyles();
-
-  const onChange = type => {
-    let val;
-    switch (type) {
-      case "increment":
-        val = increment(value);
-        break;
-      case "decrement":
-        val = decrement(value);
-        break;
-      default:
-        val = value;
-        break;
-    }
-    setValue(val);
-    toggleChange(val);
-  };
 
   return (
     <div>
@@ -56,7 +39,7 @@ export default function Setter({ id, initialValue, toggleChange }) {
           color="secondary"
           aria-label="increment"
           id={`${id}-increment`}
-          onClick={() => onChange("increment")}
+          onClick={() => setValue(increment(value))}
         >
           <AddIcon />
         </Fab>
@@ -70,7 +53,7 @@ export default function Setter({ id, initialValue, toggleChange }) {
           color="secondary"
           aria-label="decrement"
           id={`${id}-decrement`}
-          onClick={() => onChange("decrement")}
+          onClick={() => setValue(decrement(value))}
         >
           <RemoveIcon />
         </Fab>
@@ -81,6 +64,9 @@ export default function Setter({ id, initialValue, toggleChange }) {
 
 Setter.propTypes = {
   id: PropTypes.string.isRequired,
-  initialValue: PropTypes.number.isRequired,
-  toggleChange: PropTypes.func.isRequired
+  initialValue: PropTypes.number
+};
+
+Setter.defaultProps = {
+  initialValue: 0
 };

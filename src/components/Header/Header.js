@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Setter from "../Setter/Setter";
 
-const useStyles = makeStyles(({ spacing, palette }) => ({
+const useStyles = makeStyles(({ spacing }) => ({
   title: {
     marginTop: spacing(4),
     marginBottom: spacing(2)
@@ -20,39 +20,27 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
   }
 }));
 
-function Header({ title, showingSetter }) {
+function Header({ title }) {
   const classes = useStyles();
   return (
     <Box p={2}>
       <Typography className={classes.title} component="h1" variant="h3">
         {title}
       </Typography>
-      {showingSetter && (
-        <Box className={classes.buttons}>
-          <Setter
-            id="break"
-            initialValue={5}
-            toggleChange={breakLength => console.log(breakLength)}
-          />
-          <Setter
-            id="session"
-            initialValue={25}
-            toggleChange={sessionLength => console.log(sessionLength)}
-          />
-        </Box>
-      )}
+      <Box className={classes.buttons}>
+        <Setter id="break" initialValue={5} />
+        <Setter id="session" initialValue={25} />
+      </Box>
     </Box>
   );
 }
 
 Header.propTypes = {
-  title: PropTypes.string,
-  showingSetter: PropTypes.bool
+  title: PropTypes.string
 };
 
 Header.defaultProps = {
-  title: "Pomodoro",
-  showingSetter: true
+  title: "Pomodoro"
 };
 
 export default Header;

@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   }
 }));
 
-function Footer({ isRunning }) {
+function Footer({ isOn, startStop, reset }) {
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
@@ -38,8 +38,9 @@ function Footer({ isRunning }) {
         variant="contained"
         size="large"
         className={classes.play}
+        onClick={startStop}
       >
-        {isRunning ? (
+        {isOn ? (
           <>
             <PauseIcon /> Stop{" "}
           </>
@@ -49,7 +50,13 @@ function Footer({ isRunning }) {
           </>
         )}
       </Button>
-      <Fab id="reset" color="secondary" size="medium" className={classes.reset}>
+      <Fab
+        id="reset"
+        color="secondary"
+        size="medium"
+        onClick={reset}
+        className={classes.reset}
+      >
         <ResetIcon />
       </Fab>
     </Box>
@@ -57,7 +64,9 @@ function Footer({ isRunning }) {
 }
 
 Footer.propTypes = {
-  isRunning: PropTypes.bool
+  isRunning: PropTypes.bool,
+  startStop: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
 };
 
 Footer.defaultPros = {
