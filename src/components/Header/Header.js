@@ -33,7 +33,7 @@ function Header({ title }) {
   const dispatch = useDispatch();
 
   return (
-    <Box p={2}>
+    <Box py={2} px={4}>
       <Typography className={classes.title} component="h1" variant="h3">
         {title}
       </Typography>

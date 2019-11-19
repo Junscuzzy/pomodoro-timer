@@ -55,13 +55,6 @@ const intervalToObj = ms => {
 };
 
 /**
- * Transform minutes to ms
- * @param {integer} minutes minutes counter
- * @returns {integer} time in ms
- */
-// const minutesToMs = minutes => minutes * MINUTE;
-
-/**
  * Transform obj like {minutes, seconds} to formated date mm:ss
  * @param {object} obj like {minutes, seconds}
  * @returns {string} formated date

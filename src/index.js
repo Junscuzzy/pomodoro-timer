@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { Provider } from "react-redux";
+
 import configureStore from "./redux/store";
 import App from "./components/App/App";
 import Script from "./freeCodeCamp";

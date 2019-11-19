@@ -13,11 +13,12 @@ const useStyles = makeStyles(({ spacing }) => ({
     textTransform: "capitalize"
   },
   value: {
-    width: spacing(8)
+    width: spacing(6)
   },
   buttons: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 }));
 

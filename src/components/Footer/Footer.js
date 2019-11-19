@@ -1,5 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -9,6 +10,8 @@ import ResetIcon from "@material-ui/icons/RotateLeft";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 
+import { startStop, reset } from "../../redux/timerAction";
+
 const useStyles = makeStyles(({ spacing }) => ({
   wrapper: {
     marginTop: spacing(4),
@@ -16,6 +19,8 @@ const useStyles = makeStyles(({ spacing }) => ({
     position: "relative"
   },
   play: {
+    paddingTop: spacing(2),
+    paddingBottom: spacing(2),
     width: "100%",
     marginBottom: 0,
     borderRadius: 0
@@ -28,7 +33,9 @@ const useStyles = makeStyles(({ spacing }) => ({
   }
 }));
 
-function Footer({ isOn, startStop, reset }) {
+function Footer() {
+  const { isOn } = useSelector(state => state.timer);
+  const dispatch = useDispatch();
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
@@ -38,7 +45,7 @@ function Footer({ isOn, startStop, reset }) {
         variant="contained"
         size="large"
         className={classes.play}
-        onClick={startStop}
+        onClick={() => dispatch(startStop())}
       >
         {isOn ? (
           <>
@@ -54,7 +61,7 @@ function Footer({ isOn, startStop, reset }) {
         id="reset"
         color="secondary"
         size="medium"
-        onClick={reset}
+        onClick={() => dispatch(reset())}
         className={classes.reset}
       >
         <ResetIcon />
@@ -62,15 +69,5 @@ function Footer({ isOn, startStop, reset }) {
     </Box>
   );
 }
-
-Footer.propTypes = {
-  isRunning: PropTypes.bool,
-  startStop: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired
-};
-
-Footer.defaultPros = {
-  isRunning: false
-};
 
 export default Footer;

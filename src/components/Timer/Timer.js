@@ -1,13 +1,22 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import PropTypes from "prop-types";
-import React from "react";
 
-import { getFormatedDate } from "../../api";
+import { getFormatedDate, SECOND } from "../../api";
+import useInterval from "../../hooks/useInterval";
+import { updateTime } from "../../redux/timerAction";
 
 // ? Add LinearProgress
 
-function Timer({ sessionName, time }) {
+function Timer({ sessionName }) {
+  const { isOn, time } = useSelector(state => state.timer);
+  const dispatch = useDispatch();
+
+  useInterval(() => dispatch(updateTime(time)), isOn ? SECOND : null);
+
   return (
     <Box>
       <Typography id="timer-label" component="p" variant="h5">
@@ -22,13 +31,11 @@ function Timer({ sessionName, time }) {
 }
 
 Timer.propTypes = {
-  sessionName: PropTypes.string,
-  time: PropTypes.number
+  sessionName: PropTypes.string
 };
 
 Timer.defaultProps = {
-  sessionName: "Session 1",
-  time: 25 * 60 * 1000
+  sessionName: "Session 1"
 };
 
 export default Timer;

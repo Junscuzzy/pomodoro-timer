@@ -1,11 +1,14 @@
-import { increment, decrement } from "../api";
+import { increment, decrement, SECOND } from "../api";
 import TIMER from "./types";
 
 const {
   INCREMENT_BREAK,
   INCREMENT_SESSION,
   DECREMENT_BREAK,
-  DECREMENT_SESSION
+  DECREMENT_SESSION,
+  START_STOP,
+  RESET,
+  UPDATE_TIME
 } = TIMER;
 
 export const incrementBreak = () => (dispatch, getState) =>
@@ -20,14 +23,31 @@ export const decrementBreak = () => (dispatch, getState) =>
     breakLength: decrement(getState().timer.breakLength)
   });
 
-export const incrementSession = () => (dispatch, getState) =>
+export const incrementSession = () => (dispatch, getState) => {
   dispatch({
     type: INCREMENT_SESSION,
-    breakLength: increment(getState().timer.sessionLength)
+    sessionLength: increment(getState().timer.sessionLength)
   });
+  dispatch(reset());
+};
 
-export const decrementSession = () => (dispatch, getState) =>
+export const decrementSession = () => (dispatch, getState) => {
   dispatch({
     type: DECREMENT_SESSION,
-    breakLength: decrement(getState().timer.sessionLength)
+    sessionLength: decrement(getState().timer.sessionLength)
   });
+  dispatch(reset());
+};
+
+export const startStop = () => ({
+  type: START_STOP
+});
+
+export const reset = () => ({
+  type: RESET
+});
+
+export const updateTime = time => ({
+  type: UPDATE_TIME,
+  time: time - SECOND > 0 ? time - SECOND : 0
+});
