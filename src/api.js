@@ -74,4 +74,12 @@ const getFormatedDate = ms => {
   return intervalObjToString(intervalToObj(ms));
 };
 
-export { MINUTE, SECOND, increment, decrement, getFormatedDate };
+export {
+  MINUTE,
+  SECOND,
+  increment,
+  decrement,
+  getFormatedDate,
+  intervalToObj,
+  intervalObjToString
+};
