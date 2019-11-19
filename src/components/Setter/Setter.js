@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -7,8 +7,6 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-
-import { increment, decrement } from "../../api";
 
 const useStyles = makeStyles(({ spacing }) => ({
   label: {
@@ -23,8 +21,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   }
 }));
 
-export default function Setter({ id, initialValue }) {
-  const [value, setValue] = useState(initialValue);
+export default function Setter({ id, value, increment, decrement }) {
   const classes = useStyles();
 
   return (
@@ -39,7 +36,7 @@ export default function Setter({ id, initialValue }) {
           color="secondary"
           aria-label="increment"
           id={`${id}-increment`}
-          onClick={() => setValue(increment(value))}
+          onClick={value => increment(value)}
         >
           <AddIcon />
         </Fab>
@@ -53,7 +50,7 @@ export default function Setter({ id, initialValue }) {
           color="secondary"
           aria-label="decrement"
           id={`${id}-decrement`}
-          onClick={() => setValue(decrement(value))}
+          onClick={value => decrement(value)}
         >
           <RemoveIcon />
         </Fab>
@@ -64,9 +61,7 @@ export default function Setter({ id, initialValue }) {
 
 Setter.propTypes = {
   id: PropTypes.string.isRequired,
-  initialValue: PropTypes.number
-};
-
-Setter.defaultProps = {
-  initialValue: 0
+  value: PropTypes.number.isRequired,
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired
 };

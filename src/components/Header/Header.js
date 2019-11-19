@@ -1,11 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import Setter from "../Setter/Setter";
+import {
+  incrementBreak,
+  decrementBreak,
+  incrementSession,
+  decrementSession
+} from "../../redux/timerAction";
 
 const useStyles = makeStyles(({ spacing }) => ({
   title: {
@@ -22,14 +29,27 @@ const useStyles = makeStyles(({ spacing }) => ({
 
 function Header({ title }) {
   const classes = useStyles();
+  const { breakLength, sessionLength } = useSelector(state => state.timer);
+  const dispatch = useDispatch();
+
   return (
     <Box p={2}>
       <Typography className={classes.title} component="h1" variant="h3">
         {title}
       </Typography>
       <Box className={classes.buttons}>
-        <Setter id="break" initialValue={5} />
-        <Setter id="session" initialValue={25} />
+        <Setter
+          id="break"
+          value={breakLength}
+          increment={() => dispatch(incrementBreak())}
+          decrement={() => dispatch(decrementBreak())}
+        />
+        <Setter
+          id="session"
+          value={sessionLength}
+          increment={() => dispatch(incrementSession())}
+          decrement={() => dispatch(decrementSession())}
+        />
       </Box>
     </Box>
   );

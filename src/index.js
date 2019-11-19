@@ -1,16 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { Provider } from "react-redux";
+import configureStore from "./redux/store";
 import App from "./components/App/App";
 import Script from "./freeCodeCamp";
 import * as serviceWorker from "./serviceWorker";
 import theme from "./theme";
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Script />
-    <App />
-  </ThemeProvider>,
+  <Provider store={configureStore()}>
+    <ThemeProvider theme={theme}>
+      <Script />
+      <App />
+    </ThemeProvider>
+  </Provider>,
   document.getElementById("root")
 );
 
