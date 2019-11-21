@@ -10,7 +10,7 @@ import ResetIcon from "@material-ui/icons/RotateLeft";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 
-import { startStop, reset } from "../../redux/timerAction";
+import { startStop, reset } from "../../redux/actions/timerAction";
 
 const useStyles = makeStyles(({ spacing }) => ({
   wrapper: {

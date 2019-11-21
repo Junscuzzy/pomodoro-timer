@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 
-import { getFormatedDate, SECOND } from "../../api";
+import { getFormatedDate, SECOND } from "../../utils/api";
 import useInterval from "../../hooks/useInterval";
-import { updateTime } from "../../redux/timerAction";
+import { updateTime } from "../../redux/actions/timerAction";
 
 // ? Add LinearProgress
 

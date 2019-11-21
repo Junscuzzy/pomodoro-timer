@@ -1,5 +1,5 @@
-import { increment, decrement, SECOND } from "../api";
-import TIMER from "./types";
+import { increment, decrement, SECOND } from "../../utils/api";
+import TIMER from "../types";
 
 const {
   INCREMENT_BREAK,

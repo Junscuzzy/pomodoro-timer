@@ -12,7 +12,7 @@ import {
   decrementBreak,
   incrementSession,
   decrementSession
-} from "../../redux/timerAction";
+} from "../../redux/actions/timerAction";
 
 const useStyles = makeStyles(({ spacing }) => ({
   title: {
