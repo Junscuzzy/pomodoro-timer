@@ -14,7 +14,8 @@
         "**/.env.production.local": true,
         "**/npm-debug.log*": true,
         "**/yarn-debug.log*": true,
-        "**/yarn-error.log*": true
+        "**/yarn-error.log*": true,
+        "**/*__snapshots__": true
     },
     "cSpell.words": [
         "Pomodoro"
