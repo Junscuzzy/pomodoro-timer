@@ -5,9 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Timer from "../Timer/Timer";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import AppContainer from "./App.container";
 
 const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
   "@global": {
@@ -38,9 +36,7 @@ function App() {
 
       <Container maxWidth="xs" className={classes.container}>
         <Paper className={classes.paper}>
-          <Header />
-          <Timer />
-          <Footer />
+          <AppContainer />
         </Paper>
       </Container>
     </>

@@ -1,18 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
 
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import Setter from "../Setter/Setter";
-import {
-  incrementBreak,
-  decrementBreak,
-  incrementSession,
-  decrementSession
-} from "../../redux/actions/timerAction";
 
 const useStyles = makeStyles(({ spacing }) => ({
   title: {
@@ -27,10 +20,16 @@ const useStyles = makeStyles(({ spacing }) => ({
   }
 }));
 
-function Header({ title }) {
+function Header({
+  title,
+  breakLength,
+  sessionLength,
+  incrementBreak,
+  decrementBreak,
+  incrementSession,
+  decrementSession
+}) {
   const classes = useStyles();
-  const { breakLength, sessionLength } = useSelector(state => state.timer);
-  const dispatch = useDispatch();
 
   return (
     <Box py={2} px={4}>
@@ -41,14 +40,14 @@ function Header({ title }) {
         <Setter
           id="break"
           value={breakLength}
-          increment={() => dispatch(incrementBreak())}
-          decrement={() => dispatch(decrementBreak())}
+          increment={incrementBreak}
+          decrement={decrementBreak}
         />
         <Setter
           id="session"
           value={sessionLength}
-          increment={() => dispatch(incrementSession())}
-          decrement={() => dispatch(decrementSession())}
+          increment={incrementSession}
+          decrement={decrementSession}
         />
       </Box>
     </Box>
@@ -56,7 +55,11 @@ function Header({ title }) {
 }
 
 Header.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  incrementBreak: PropTypes.func.isRequired,
+  decrementBreak: PropTypes.func.isRequired,
+  incrementSession: PropTypes.func.isRequired,
+  decrementSession: PropTypes.func.isRequired
 };
 
 Header.defaultProps = {

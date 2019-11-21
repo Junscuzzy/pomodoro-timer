@@ -1,6 +1,4 @@
 import React from "react";
-// import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
 
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -9,8 +7,6 @@ import PlayIcon from "@material-ui/icons/PlayArrow";
 import ResetIcon from "@material-ui/icons/RotateLeft";
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
-
-import { startStop, reset } from "../../redux/actions/timerAction";
 
 const useStyles = makeStyles(({ spacing }) => ({
   wrapper: {
@@ -33,9 +29,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   }
 }));
 
-function Footer() {
-  const { isOn } = useSelector(state => state.timer);
-  const dispatch = useDispatch();
+function Footer({ isOn, startStop, reset }) {
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
@@ -45,7 +39,7 @@ function Footer() {
         variant="contained"
         size="large"
         className={classes.play}
-        onClick={() => dispatch(startStop())}
+        onClick={startStop}
       >
         {isOn ? (
           <>
@@ -61,7 +55,7 @@ function Footer() {
         id="reset"
         color="secondary"
         size="medium"
-        onClick={() => dispatch(reset())}
+        onClick={reset}
         className={classes.reset}
       >
         <ResetIcon />
