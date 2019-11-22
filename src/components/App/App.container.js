@@ -27,10 +27,10 @@ export default function AppContainer() {
       <Header
         breakLength={breakLength}
         sessionLength={sessionLength}
-        incrementBreak={() => dispatch(incrementBreak())}
-        decrementBreak={() => dispatch(decrementBreak())}
-        incrementSession={() => dispatch(incrementSession())}
-        decrementSession={() => dispatch(decrementSession())}
+        incrementBreak={() => dispatch(incrementBreak(breakLength))}
+        decrementBreak={() => dispatch(decrementBreak(breakLength))}
+        incrementSession={() => dispatch(incrementSession(sessionLength))}
+        decrementSession={() => dispatch(decrementSession(sessionLength))}
       />
       <Timer
         formatedDate={getFormatedDate(time)}

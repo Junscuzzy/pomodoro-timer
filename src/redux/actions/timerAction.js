@@ -11,30 +11,34 @@ const {
   UPDATE_TIME
 } = TIMER;
 
-export const incrementBreak = () => (dispatch, getState) =>
+export const incrementBreak = count => dispatch => {
   dispatch({
     type: INCREMENT_BREAK,
-    breakLength: increment(getState().timer.breakLength)
-  });
-
-export const decrementBreak = () => (dispatch, getState) =>
-  dispatch({
-    type: DECREMENT_BREAK,
-    breakLength: decrement(getState().timer.breakLength)
-  });
-
-export const incrementSession = () => (dispatch, getState) => {
-  dispatch({
-    type: INCREMENT_SESSION,
-    sessionLength: increment(getState().timer.sessionLength)
+    breakLength: increment(count)
   });
   dispatch(reset());
 };
 
-export const decrementSession = () => (dispatch, getState) => {
+export const decrementBreak = count => dispatch => {
+  dispatch({
+    type: DECREMENT_BREAK,
+    breakLength: decrement(count)
+  });
+  dispatch(reset());
+};
+
+export const incrementSession = count => dispatch => {
+  dispatch({
+    type: INCREMENT_SESSION,
+    sessionLength: increment(count)
+  });
+  dispatch(reset());
+};
+
+export const decrementSession = count => dispatch => {
   dispatch({
     type: DECREMENT_SESSION,
-    sessionLength: decrement(getState().timer.sessionLength)
+    sessionLength: decrement(count)
   });
   dispatch(reset());
 };
