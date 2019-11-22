@@ -2,7 +2,6 @@ import {
   increment,
   decrement,
   intervalToObj,
-  intervalObjToString,
   getFormatedDate,
   SECOND,
   MINUTE
@@ -73,34 +72,23 @@ describe("API", () => {
     });
   });
 
-  describe("intervalObjToString()", () => {
-    it("should return string formated date", () => {
-      expect(intervalObjToString({ minutes: 25, seconds: 54 })).toBe("25:54");
-      expect(intervalObjToString({ minutes: 45, seconds: 32 })).toBe("45:32");
-    });
-
-    it("should always be displayed in mm:ss format", () => {
-      expect(intervalObjToString({ minutes: 6, seconds: 54 })).toBe("06:54");
-      expect(intervalObjToString({ minutes: 45, seconds: 5 })).toBe("45:05");
-      expect(intervalObjToString({ minutes: 7, seconds: 9 })).toBe("07:09");
-    });
-
-    it("should return 00:00 if timeout", () => {
-      expect(intervalObjToString({ minutes: 0, seconds: 0 })).toBe("00:00");
-    });
-  });
-
   describe("getFormatedDate()", () => {
     it("should always be displayed in mm:ss format", () => {
       expect(getFormatedDate(414000)).toBe("06:54");
+      expect(getFormatedDate(25 * MINUTE + 54 * SECOND)).toBe("25:54");
+      expect(getFormatedDate(45 * MINUTE + 32 * SECOND)).toBe("45:32");
     });
 
     it("should return max 60:00", () => {
       expect(getFormatedDate(61 * MINUTE + 61 * SECOND)).toBe("60:00");
     });
 
-    it("should return min 00:00", () => {
+    it("should return 00:00 if timeout", () => {
       expect(getFormatedDate(0)).toBe("00:00");
+    });
+
+    it("should return min 00:00", () => {
+      expect(getFormatedDate(-1000)).toBe("00:00");
     });
   });
 });

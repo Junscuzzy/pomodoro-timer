@@ -55,31 +55,14 @@ const intervalToObj = ms => {
 };
 
 /**
- * Transform obj like {minutes, seconds} to formated date mm:ss
- * @param {object} obj like {minutes, seconds}
- * @returns {string} formated date
- */
-const intervalObjToString = obj => {
-  const { minutes, seconds } = obj;
-  const addZero = x => (x < 10 ? `0${x}` : `${x}`);
-  return `${addZero(minutes)}:${addZero(seconds)}`;
-};
-
-/**
  * Transform time in ms to formated date
  * @param {integer} ms time in ms
  * @returns {string} formated date
  */
 const getFormatedDate = ms => {
-  return intervalObjToString(intervalToObj(ms));
+  const { minutes, seconds } = intervalToObj(ms);
+  const addZero = x => (x < 10 ? `0${x}` : `${x}`);
+  return `${addZero(minutes)}:${addZero(seconds)}`;
 };
 
-export {
-  MINUTE,
-  SECOND,
-  increment,
-  decrement,
-  getFormatedDate,
-  intervalToObj,
-  intervalObjToString
-};
+export { MINUTE, SECOND, increment, decrement, getFormatedDate, intervalToObj };
