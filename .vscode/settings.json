@@ -15,7 +15,8 @@
         "**/npm-debug.log*": true,
         "**/yarn-debug.log*": true,
         "**/yarn-error.log*": true,
-        "**/*__snapshots__": true
+        "**/*__snapshots__": true,
+        "**/.vscode": true
     },
     "cSpell.words": [
         "Pomodoro"
