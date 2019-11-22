@@ -4,8 +4,10 @@ import Footer from "./Footer";
 
 const fnStartStop = jest.fn();
 const fnReset = jest.fn();
-const jsx = <Footer isOn={true} startStop={fnStartStop} reset={fnReset} />;
-const jsxOff = <Footer isOn={false} startStop={fnStartStop} reset={fnReset} />;
+const jsx = <Footer isRunning={true} startStop={fnStartStop} reset={fnReset} />;
+const jsxOff = (
+  <Footer isRunning={false} startStop={fnStartStop} reset={fnReset} />
+);
 
 describe("<Footer />", () => {
   it("Footer should render correctly", () => {
@@ -37,7 +39,7 @@ describe("<Footer />", () => {
     expect(fnReset).toHaveBeenCalled();
   });
 
-  test("StartStop label must be change with isOn", () => {
+  test("StartStop label must be change with isRunning", () => {
     const componentOn = shallow(jsx);
     const button = componentOn.find("#start_stop");
     expect(button.text()).toMatch(/stop/gi);

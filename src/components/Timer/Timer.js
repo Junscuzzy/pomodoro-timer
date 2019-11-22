@@ -9,8 +9,8 @@ import useInterval from "../../hooks/useInterval";
 
 // ? Add LinearProgress
 
-function Timer({ label, formatedDate, isOn, tick }) {
-  useInterval(() => tick(), isOn ? SECOND : null);
+function Timer({ label, formatedDate, isRunning, tick }) {
+  useInterval(() => tick(), isRunning ? SECOND : null);
 
   return (
     <Box>
@@ -26,11 +26,15 @@ function Timer({ label, formatedDate, isOn, tick }) {
 }
 
 Timer.propTypes = {
-  label: PropTypes.string
+  label: PropTypes.string,
+  formatedDate: PropTypes.string.isRequired,
+  isRunning: PropTypes.bool,
+  tick: PropTypes.func.isRequired
 };
 
 Timer.defaultProps = {
-  label: "Session 1"
+  label: "Session 1",
+  isRunning: false
 };
 
 export default Timer;

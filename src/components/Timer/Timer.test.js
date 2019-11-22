@@ -4,8 +4,15 @@ import Timer from "./Timer";
 
 const fnTick = jest.fn();
 const jsx = (
-  <Timer isOn={true} label={"Session 1"} formatedDate="25:00" tick={fnTick} />
+  <Timer
+    isRunning={true}
+    label={"Session 1"}
+    formatedDate="25:00"
+    tick={fnTick}
+  />
 );
+
+// jest.useFakeTimers();
 
 describe("<Timer />", () => {
   it("Timer should render correctly", () => {
@@ -27,7 +34,27 @@ describe("<Timer />", () => {
     expect(time.text()).toBe("25:00");
   });
 
-  it("should not tick if timer if on each second", () => {});
+  // it("calls the callback after 1 second", () => {
+  //   const component = shallow(jsx);
+
+  //   // jest.runAllTimers();
+
+  //   expect(component.find("#time-left").text()).toBe("25:00");
+  //   jest.advanceTimersByTime(1000);
+  //   expect(component.find("#time-left").text()).toBe("24:59");
+  // });
+
+  it("should not tick if timer if on each second", () => {
+    // jest.useFakeTimers();
+    // const component = shallow(jsx);
+    // expect(component.find("#time-left").text()).toBe("25:00");
+    // component.setProps({ isRunning: true });
+    // jest.advanceTimersByTime(1000);
+    // console.log({ isRunning: component.prop("isRunning") });
+    // expect(fnTick).toBeCalled();
+    // expect(component.prop("tick")).toBeCalled();
+    // jest.useRealTimers();
+  });
 
   it("should not tick if timer if off", () => {});
 });

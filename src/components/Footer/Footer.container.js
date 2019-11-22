@@ -5,11 +5,11 @@ import Footer from "./Footer";
 import { startStop, reset } from "../../redux/actions/timerAction";
 
 export default function FooterContainer() {
-  const { isOn } = useSelector(state => state.timer);
+  const { isRunning } = useSelector(state => state.timer);
   const dispatch = useDispatch();
   return (
     <Footer
-      isOn={isOn}
+      isRunning={isRunning}
       startStop={() => dispatch(startStop())}
       reset={() => dispatch(reset())}
     />

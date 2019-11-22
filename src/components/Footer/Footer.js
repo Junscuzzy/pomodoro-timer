@@ -30,7 +30,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   }
 }));
 
-function Footer({ isOn, startStop, reset }) {
+function Footer({ isRunning, startStop, reset }) {
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
@@ -42,7 +42,7 @@ function Footer({ isOn, startStop, reset }) {
         className={classes.play}
         onClick={startStop}
       >
-        {isOn ? (
+        {isRunning ? (
           <>
             <PauseIcon /> Stop{" "}
           </>
@@ -66,7 +66,7 @@ function Footer({ isOn, startStop, reset }) {
 }
 
 Footer.propTypes = {
-  isOn: PropTypes.bool.isRequired,
+  isRunning: PropTypes.bool.isRequired,
   startStop: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired
 };

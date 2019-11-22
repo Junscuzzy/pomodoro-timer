@@ -25,15 +25,15 @@ describe("timerReducer", () => {
 
   test(`${types.START_STOP} state is correct`, () => {
     const action = { type: types.START_STOP };
-    expect(timerReducer({ isOn: false }, action).isOn).toBe(true);
-    expect(timerReducer({ isOn: true }, action).isOn).toBe(false);
+    expect(timerReducer({ isRunning: false }, action).isRunning).toBe(true);
+    expect(timerReducer({ isRunning: true }, action).isRunning).toBe(false);
   });
 
   test(`${types.RESET} state is correct`, () => {
     const action = { type: types.RESET };
     const state = timerReducer({ sessionLength: 30, breakLength: 3 }, action);
 
-    expect(state.isOn).toBeFalsy();
+    expect(state.isRunning).toBeFalsy();
     expect(state.startTime).toBe(25 * MINUTE);
     expect(state.time).toBe(25 * MINUTE);
     expect(state.sessionLength).toBe(25);

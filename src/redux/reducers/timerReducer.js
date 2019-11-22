@@ -14,7 +14,7 @@ const {
 const initialState = {
   breakLength: 5,
   sessionLength: 25,
-  isOn: false,
+  isRunning: false,
   startTime: 25 * MINUTE,
   time: 25 * MINUTE
 };
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
         sessionLength: action.sessionLength
       };
     case START_STOP:
-      return { ...state, isOn: !state.isOn };
+      return { ...state, isRunning: !state.isRunning };
     case RESET:
       return {
         ...initialState

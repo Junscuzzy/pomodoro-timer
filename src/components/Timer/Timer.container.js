@@ -6,13 +6,13 @@ import { updateTime } from "../../redux/actions/timerAction";
 import { getFormatedDate } from "../../utils/api";
 
 export default function AppContainer() {
-  const { isOn, time } = useSelector(state => state.timer);
+  const { isRunning, time } = useSelector(state => state.timer);
   const dispatch = useDispatch();
   return (
     <Timer
       formatedDate={getFormatedDate(time)}
       tick={() => dispatch(updateTime(time))}
-      isOn={isOn}
+      isRunning={isRunning}
     />
   );
 }
