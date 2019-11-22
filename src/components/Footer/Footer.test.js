@@ -8,7 +8,7 @@ const jsx = <Footer isOn={true} startStop={fnStartStop} reset={fnReset} />;
 const jsxOff = <Footer isOn={false} startStop={fnStartStop} reset={fnReset} />;
 
 describe("<Footer />", () => {
-  it("sidebar should render correctly", () => {
+  it("Footer should render correctly", () => {
     const component = shallow(jsx);
     expect(component).toMatchSnapshot();
   });

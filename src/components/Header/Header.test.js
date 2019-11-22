@@ -19,7 +19,7 @@ const jsx = (
 
 describe("<Header />", () => {
   describe("Test the HTML structure", () => {
-    it("sidebar should render correctly", () => {
+    it("Header should render correctly", () => {
       const component = shallow(jsx);
       expect(component).toMatchSnapshot();
     });

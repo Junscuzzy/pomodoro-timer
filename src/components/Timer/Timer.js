@@ -9,13 +9,13 @@ import useInterval from "../../hooks/useInterval";
 
 // ? Add LinearProgress
 
-function Timer({ sessionName, formatedDate, isOn, tick }) {
+function Timer({ label, formatedDate, isOn, tick }) {
   useInterval(() => tick(), isOn ? SECOND : null);
 
   return (
     <Box>
       <Typography id="timer-label" component="p" variant="h5">
-        {sessionName}
+        {label}
       </Typography>
 
       <Typography id="time-left" variant="h2">
@@ -26,11 +26,11 @@ function Timer({ sessionName, formatedDate, isOn, tick }) {
 }
 
 Timer.propTypes = {
-  sessionName: PropTypes.string
+  label: PropTypes.string
 };
 
 Timer.defaultProps = {
-  sessionName: "Session 1"
+  label: "Session 1"
 };
 
 export default Timer;
