@@ -31,11 +31,13 @@ describe("timerReducer", () => {
 
   test(`${types.RESET} state is correct`, () => {
     const action = { type: types.RESET };
-    const state = timerReducer({ sessionLength: 25 }, action);
+    const state = timerReducer({ sessionLength: 30, breakLength: 3 }, action);
 
     expect(state.isOn).toBeFalsy();
     expect(state.startTime).toBe(25 * MINUTE);
     expect(state.time).toBe(25 * MINUTE);
+    expect(state.sessionLength).toBe(25);
+    expect(state.breakLength).toBe(5);
   });
 
   test(`${types.UPDATE_TIME} state is correct`, () => {

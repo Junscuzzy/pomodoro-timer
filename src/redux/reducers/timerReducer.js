@@ -37,10 +37,7 @@ export default (state = initialState, action) => {
       return { ...state, isOn: !state.isOn };
     case RESET:
       return {
-        ...state,
-        isOn: false,
-        startTime: state.sessionLength * MINUTE,
-        time: state.sessionLength * MINUTE
+        ...initialState
       };
     case UPDATE_TIME:
       return { ...state, time: action.time };

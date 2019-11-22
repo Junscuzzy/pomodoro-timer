@@ -13,69 +13,49 @@ describe("Redux Timer Actions", () => {
 
   describe("incrementBreak()", () => {
     it("Dispatches the correct actions", async () => {
-      const expectedAction = [
-        {
-          type: types.INCREMENT_BREAK,
-          breakLength: 6
-        },
-        {
-          type: types.RESET
-        }
-      ];
+      const expectedAction = {
+        type: types.INCREMENT_BREAK,
+        breakLength: 6
+      };
 
       store.dispatch(actions.incrementBreak(5));
-      await expect(store.getActions()).toEqual(expectedAction);
+      await expect(store.getActions()).toContainEqual(expectedAction);
     });
   });
 
   describe("decrementBreak()", () => {
     it("Dispatches the correct actions", async () => {
-      const expectedAction = [
-        {
-          type: types.DECREMENT_BREAK,
-          breakLength: 4
-        },
-        {
-          type: types.RESET
-        }
-      ];
+      const expectedAction = {
+        type: types.DECREMENT_BREAK,
+        breakLength: 4
+      };
 
       store.dispatch(actions.decrementBreak(5));
-      await expect(store.getActions()).toEqual(expectedAction);
+      await expect(store.getActions()).toContainEqual(expectedAction);
     });
   });
 
   describe("incrementSession()", () => {
     it("Dispatches the correct actions", async () => {
-      const expectedAction = [
-        {
-          type: types.INCREMENT_SESSION,
-          sessionLength: 6
-        },
-        {
-          type: types.RESET
-        }
-      ];
+      const expectedAction = {
+        type: types.INCREMENT_SESSION,
+        sessionLength: 6
+      };
 
       store.dispatch(actions.incrementSession(5));
-      await expect(store.getActions()).toEqual(expectedAction);
+      await expect(store.getActions()).toContainEqual(expectedAction);
     });
   });
 
   describe("decrementSession()", () => {
     it("Dispatches the correct actions", async () => {
-      const expectedAction = [
-        {
-          type: types.DECREMENT_SESSION,
-          sessionLength: 4
-        },
-        {
-          type: types.RESET
-        }
-      ];
+      const expectedAction = {
+        type: types.DECREMENT_SESSION,
+        sessionLength: 4
+      };
 
       store.dispatch(actions.decrementSession(5));
-      await expect(store.getActions()).toEqual(expectedAction);
+      await expect(store.getActions()).toContainEqual(expectedAction);
     });
   });
 
