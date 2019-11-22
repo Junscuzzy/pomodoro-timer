@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -63,5 +64,11 @@ function Footer({ isOn, startStop, reset }) {
     </Box>
   );
 }
+
+Footer.propTypes = {
+  isOn: PropTypes.bool.isRequired,
+  startStop: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
+};
 
 export default Footer;
