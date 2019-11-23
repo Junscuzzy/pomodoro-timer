@@ -94,4 +94,13 @@ describe("Redux Timer Actions", () => {
       });
     });
   });
+
+  describe("setTimerType()", () => {
+    it("Dispatches the correct actions", async () => {
+      store.dispatch(actions.toggleTimerType());
+      await expect(store.getActions()).toContainEqual({
+        type: types.TOGGLE_TIMER_TYPE
+      });
+    });
+  });
 });

@@ -7,39 +7,68 @@ const {
   DECREMENT_BREAK,
   DECREMENT_SESSION,
   START_STOP,
-  RESET,
-  UPDATE_TIME
+  RESET_TIME,
+  RESET_TIMER,
+  UPDATE_TIME,
+  TOGGLE_TIMER_TYPE
 } = TIMER;
 
-export const incrementBreak = count => ({
-  type: INCREMENT_BREAK,
-  breakLength: increment(count)
-});
+export const incrementBreak = count => dispatch => {
+  dispatch({
+    type: INCREMENT_BREAK,
+    breakLength: increment(count)
+  });
+  dispatch(resetTime());
+};
 
-export const decrementBreak = count => ({
-  type: DECREMENT_BREAK,
-  breakLength: decrement(count)
-});
+export const decrementBreak = count => dispatch => {
+  dispatch({
+    type: DECREMENT_BREAK,
+    breakLength: decrement(count)
+  });
+  dispatch(resetTime());
+};
 
-export const incrementSession = count => ({
-  type: INCREMENT_SESSION,
-  sessionLength: increment(count)
-});
+export const incrementSession = count => dispatch => {
+  dispatch({
+    type: INCREMENT_SESSION,
+    sessionLength: increment(count)
+  });
+  dispatch(resetTime());
+};
 
-export const decrementSession = count => ({
-  type: DECREMENT_SESSION,
-  sessionLength: decrement(count)
-});
+export const decrementSession = count => dispatch => {
+  dispatch({
+    type: DECREMENT_SESSION,
+    sessionLength: decrement(count)
+  });
+  dispatch(resetTime());
+};
 
 export const startStop = () => ({
   type: START_STOP
 });
 
-export const reset = () => ({
-  type: RESET
+export const resetTime = () => ({
+  type: RESET_TIME
 });
 
-export const updateTime = time => ({
-  type: UPDATE_TIME,
-  time: time - SECOND > 0 ? time - SECOND : 0
+export const resetTimer = () => ({
+  type: RESET_TIMER
 });
+
+export const updateTime = time => dispatch => {
+  if (time < 999) {
+    dispatch(toggleTimerType());
+  } else {
+    dispatch({
+      type: UPDATE_TIME,
+      time: time - SECOND
+    });
+  }
+};
+
+export const toggleTimerType = () => dispatch => {
+  dispatch({ type: TOGGLE_TIMER_TYPE });
+  dispatch(resetTime());
+};

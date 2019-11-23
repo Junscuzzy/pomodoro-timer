@@ -44,4 +44,26 @@ describe("timerReducer", () => {
     const action = { type: types.UPDATE_TIME, time: 24 * MINUTE };
     expect(timerReducer({}, action).time).toBe(24 * MINUTE);
   });
+
+  test(`${types.TOGGLE_TIMER_TYPE} state is correct when is "break"`, () => {
+    const action = { type: types.TOGGLE_TIMER_TYPE };
+    const state = timerReducer(
+      { timerType: "break", sessionLength: 22 },
+      action
+    );
+    expect(state.timerType).toBe("session");
+    expect(state.startTime).toBe(22 * MINUTE);
+    expect(state.time).toBe(22 * MINUTE);
+  });
+
+  test(`${types.TOGGLE_TIMER_TYPE} state is correct when is "session"`, () => {
+    const action = { type: types.TOGGLE_TIMER_TYPE };
+    const state = timerReducer(
+      { timerType: "session", breakLength: 4 },
+      action
+    );
+    expect(state.timerType).toBe("break");
+    expect(state.startTime).toBe(4 * MINUTE);
+    expect(state.time).toBe(4 * MINUTE);
+  });
 });

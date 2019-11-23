@@ -23,8 +23,8 @@ describe("API", () => {
       expect(decrement(3)).toStrictEqual(2);
     });
 
-    it("should decrement until 0 min", () => {
-      expect(decrement(0)).toStrictEqual(0);
+    it("should decrement until 1 min", () => {
+      expect(decrement(1)).toStrictEqual(1);
     });
   });
 
@@ -47,6 +47,13 @@ describe("API", () => {
       expect(intervalToObj(15 * SECOND)).toMatchObject({
         minutes: 0,
         seconds: 15
+      });
+    });
+
+    it("should return an object for 1 minute", () => {
+      expect(intervalToObj(MINUTE)).toMatchObject({
+        minutes: 1,
+        seconds: 0
       });
     });
 

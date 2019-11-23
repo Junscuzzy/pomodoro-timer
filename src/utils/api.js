@@ -14,13 +14,13 @@ const increment = i => {
 };
 
 /**
- * Decrement a counter from x to 0
+ * Decrement a counter from x to 1
  * @param {integer} i
  * @returns {integer}
  */
 const decrement = i => {
-  if (i < 1) {
-    return 0;
+  if (i <= 1) {
+    return 1;
   }
   return i - 1;
 };
@@ -31,19 +31,19 @@ const decrement = i => {
  * @returns {object} like {minutes, seconds}
  */
 const intervalToObj = ms => {
-  // Min
+  // Max
   if (ms > 60 * MINUTE) {
     return { minutes: 60, seconds: 0 };
   }
 
-  // Max
+  // Min
   if (ms < 0) {
     return { minutes: 0, seconds: 0 };
   }
 
   // Minutes
   let minutes = 0;
-  if (ms > MINUTE) {
+  if (ms >= MINUTE) {
     minutes = Math.floor(ms / MINUTE);
     ms = ms - minutes * MINUTE;
   }
