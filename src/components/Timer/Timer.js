@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { SECOND } from "../../utils/api";
 import useInterval from "../../hooks/useInterval";
-import { classes } from "istanbul-lib-coverage";
 
 // ? Add LinearProgress
 
@@ -29,7 +28,7 @@ function Timer({ counter, timerType, formatedDate, isRunning, tick }) {
         component="p"
         variant="h5"
       >
-        {`${timerType} ${counter}`}
+        {`${timerType} ${counter}`.toString()}
       </Typography>
 
       <Typography id="time-left" variant="h2">
@@ -48,7 +47,6 @@ Timer.propTypes = {
 };
 
 Timer.defaultProps = {
-  label: "Session 1",
   isRunning: false
 };
 

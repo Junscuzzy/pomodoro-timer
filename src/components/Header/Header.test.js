@@ -9,7 +9,8 @@ const fnDSClick = jest.fn();
 const jsx = (
   <Header
     title="Pomodoro"
-    value={5}
+    breakLength={5}
+    sessionLength={25}
     incrementBreak={fnIBClick}
     decrementBreak={fnDBClick}
     incrementSession={fnISClick}

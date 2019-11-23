@@ -56,6 +56,8 @@ function Header({
 
 Header.propTypes = {
   title: PropTypes.string,
+  breakLength: PropTypes.number.isRequired,
+  sessionLength: PropTypes.number.isRequired,
   incrementBreak: PropTypes.func.isRequired,
   decrementBreak: PropTypes.func.isRequired,
   incrementSession: PropTypes.func.isRequired,

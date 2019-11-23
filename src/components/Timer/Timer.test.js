@@ -5,8 +5,9 @@ import Timer from "./Timer";
 const fnTick = jest.fn();
 const jsx = (
   <Timer
+    counter={2}
+    timerType="session"
     isRunning={true}
-    label={"Session 1"}
     formatedDate="25:00"
     tick={fnTick}
   />
@@ -24,7 +25,7 @@ describe("<Timer />", () => {
     const component = shallow(jsx);
     const label = component.find("#timer-label");
     expect(label).toHaveLength(1);
-    expect(label.text()).toBe("Session 1");
+    expect(label.text()).toBe("session 2");
   });
 
   it("should be render a formated time into #timer-left", () => {

@@ -11,7 +11,8 @@ import {
 } from "../../redux/actions/timerAction";
 
 export default function HeaderContainer() {
-  const { breakLength, sessionLength } = useSelector(state => state.timer);
+  const state = useSelector(state => state.timer);
+  const { breakLength, sessionLength } = state;
   const dispatch = useDispatch();
   return (
     <Header
