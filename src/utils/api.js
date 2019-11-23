@@ -1,42 +1,30 @@
-const SECOND = 1000;
-const MINUTE = SECOND * 60;
+export const SECOND = 1000;
+export const MINUTE = SECOND * 60;
 
 /**
- * Increment a counter from x to 60
- * @param {integer} i
+ * Increment a length from x to 60
+ * @param {integer} length
  * @returns {integer}
  */
-const increment = i => {
-  if (i >= 60) {
-    return 60;
-  }
-  return i + 1;
-};
+export const increment = length => (length >= 60 ? 60 : length + 1);
 
 /**
- * Decrement a counter from x to 1
- * @param {integer} i
+ * Decrement a length from x to 1
+ * @param {integer} length
  * @returns {integer}
  */
-const decrement = i => {
-  if (i <= 1) {
-    return 1;
-  }
-  return i - 1;
-};
+export const decrement = length => (length <= 1 ? 1 : length - 1);
 
 /**
  * Transform time in ms to a obj like {minutes, seconds}
  * @param {integer} ms Time in ms
  * @returns {object} like {minutes, seconds}
  */
-const intervalToObj = ms => {
-  // Max
+export const intervalToObj = ms => {
   if (ms > 60 * MINUTE) {
     return { minutes: 60, seconds: 0 };
   }
 
-  // Min
   if (ms < 0) {
     return { minutes: 0, seconds: 0 };
   }
@@ -59,10 +47,8 @@ const intervalToObj = ms => {
  * @param {integer} ms time in ms
  * @returns {string} formated date
  */
-const getFormatedDate = ms => {
+export const getFormatedDate = ms => {
   const { minutes, seconds } = intervalToObj(ms);
   const addZero = x => (x < 10 ? `0${x}` : `${x}`);
   return `${addZero(minutes)}:${addZero(seconds)}`;
 };
-
-export { MINUTE, SECOND, increment, decrement, getFormatedDate, intervalToObj };
