@@ -1,6 +1,6 @@
 import timerReducer from "./timerReducer";
 import types from "../types";
-import { MINUTE } from "../../utils/api";
+import { MINUTE, SECOND } from "../../utils/api";
 
 describe("timerReducer", () => {
   test(`${types.INCREMENT_BREAK} state is correct`, () => {
@@ -29,15 +29,44 @@ describe("timerReducer", () => {
     expect(timerReducer({ isRunning: true }, action).isRunning).toBe(false);
   });
 
-  test(`${types.RESET} state is correct`, () => {
-    const action = { type: types.RESET };
-    const state = timerReducer({ sessionLength: 30, breakLength: 3 }, action);
+  test(`${types.RESET_TIME} state is correct if is a session`, () => {
+    const action = { type: types.RESET_TIME };
+    const state = timerReducer(
+      { sessionLength: 30, timerType: "session" },
+      action
+    );
+
+    expect(state.startTime).toBe(30 * MINUTE);
+    expect(state.time).toBe(30 * MINUTE);
+  });
+
+  test(`${types.RESET_TIME} state is correct if is a break`, () => {
+    const action = { type: types.RESET_TIME };
+    const state = timerReducer({ breakLength: 3, timerType: "break" }, action);
+
+    expect(state.startTime).toBe(3 * MINUTE);
+    expect(state.time).toBe(3 * MINUTE);
+  });
+
+  test(`${types.RESET_TIMER} state is correct`, () => {
+    const action = { type: types.RESET_TIMER };
+    const state = timerReducer(
+      {
+        sessionLength: 30,
+        breakLength: 3,
+        isRunning: true,
+        time: 4 * SECOND,
+        timerType: "break"
+      },
+      action
+    );
 
     expect(state.isRunning).toBeFalsy();
     expect(state.startTime).toBe(25 * MINUTE);
     expect(state.time).toBe(25 * MINUTE);
     expect(state.sessionLength).toBe(25);
     expect(state.breakLength).toBe(5);
+    expect(state.timerType).toBe("session");
   });
 
   test(`${types.UPDATE_TIME} state is correct`, () => {
@@ -52,8 +81,6 @@ describe("timerReducer", () => {
       action
     );
     expect(state.timerType).toBe("session");
-    expect(state.startTime).toBe(22 * MINUTE);
-    expect(state.time).toBe(22 * MINUTE);
   });
 
   test(`${types.TOGGLE_TIMER_TYPE} state is correct when is "session"`, () => {
@@ -63,7 +90,5 @@ describe("timerReducer", () => {
       action
     );
     expect(state.timerType).toBe("break");
-    expect(state.startTime).toBe(4 * MINUTE);
-    expect(state.time).toBe(4 * MINUTE);
   });
 });

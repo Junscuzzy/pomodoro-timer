@@ -1,6 +1,5 @@
 import TIMER from "../types";
-import { MINUTE, SECOND } from "../../utils/api";
-import { AST_LabelRef } from "terser";
+import { MINUTE } from "../../utils/api";
 
 const {
   INCREMENT_BREAK,
