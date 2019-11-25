@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "../Header/Header.container";
 import Timer from "../Timer/Timer.container";
 import Footer from "../Footer/Footer.container";
+import Audio from "../Audio/Audio.container";
 
 const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
   "@global": {
@@ -41,6 +42,7 @@ function App() {
           <Header />
           <Timer />
           <Footer />
+          <Audio />
         </Paper>
       </Container>
     </>
