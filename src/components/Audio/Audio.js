@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useAudio } from "react-use";
@@ -20,6 +20,7 @@ export default function Audio({ time, isRunning }) {
     if (time < SECOND && state.time === 0 && isRunning) {
       controls.play();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time, isRunning]);
 
   console.log({ state, time });

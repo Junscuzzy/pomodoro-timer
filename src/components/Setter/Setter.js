@@ -2,23 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
-import Fab from "@material-ui/core/Fab";
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import DoubleArrowRoundedIcon from "@material-ui/icons/DoubleArrowRounded";
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
   label: {
     textTransform: "capitalize"
   },
   value: {
-    width: spacing(6)
-  },
-  buttons: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
+    width: theme.spacing(6)
+    // fontFamily: "Orbitron"
   }
 }));
 
@@ -26,36 +26,43 @@ export default function Setter({ id, value, increment, decrement }) {
   const classes = useStyles();
 
   return (
-    <div>
-      <Typography id={`${id}-label`} variant="h6" className={classes.label}>
-        {id}
+    <div className={classes.root}>
+      <Button
+        size="small"
+        aria-label="increment"
+        id={`${id}-increment`}
+        onClick={value => increment(value)}
+      >
+        <DoubleArrowRoundedIcon
+          color="secondary"
+          style={{ transform: "rotate(-90deg)" }}
+        />
+      </Button>
+
+      <Typography
+        id={`${id}-length`}
+        variant="h5"
+        component="p"
+        className={classes.value}
+      >
+        {value}
       </Typography>
 
-      <Box className={classes.buttons}>
-        <Fab
-          size="small"
+      <Button
+        size="small"
+        aria-label="decrement"
+        id={`${id}-decrement`}
+        onClick={value => decrement(value)}
+      >
+        <DoubleArrowRoundedIcon
           color="secondary"
-          aria-label="increment"
-          id={`${id}-increment`}
-          onClick={value => increment(value)}
-        >
-          <AddIcon />
-        </Fab>
+          style={{ transform: "rotate(90deg)" }}
+        />
+      </Button>
 
-        <Typography id={`${id}-length`} variant="h5" className={classes.value}>
-          {value}
-        </Typography>
-
-        <Fab
-          size="small"
-          color="secondary"
-          aria-label="decrement"
-          id={`${id}-decrement`}
-          onClick={value => decrement(value)}
-        >
-          <RemoveIcon />
-        </Fab>
-      </Box>
+      <Typography id={`${id}-label`} variant="body1" className={classes.label}>
+        {id}
+      </Typography>
     </div>
   );
 }

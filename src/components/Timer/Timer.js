@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -10,9 +9,24 @@ import useInterval from "../../hooks/useInterval";
 
 // ? Add LinearProgress
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
+  root: {
+    flex: 1,
+    display: "flex"
+  },
+  wrapper: {
+    margin: "auto"
+  },
+
   title: {
-    textTransform: "capitalize"
+    textTransform: "capitalize",
+    marginBottom: theme.spacing(1)
+  },
+  time: {
+    fontFamily: "Orbitron",
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(2),
+    boxShadow: theme.shadows[4]
   }
 }));
 
@@ -21,20 +35,22 @@ function Timer({ counter, timerType, formatedDate, isRunning, tick }) {
   useInterval(() => tick(), isRunning ? SECOND : null);
 
   return (
-    <Box>
-      <Typography
-        id="timer-label"
-        className={classes.title}
-        component="p"
-        variant="h5"
-      >
-        {`${timerType} ${counter}`.toString()}
-      </Typography>
+    <div className={classes.root}>
+      <div className={classes.wrapper}>
+        <Typography
+          id="timer-label"
+          className={classes.title}
+          component="p"
+          variant="h5"
+        >
+          {`${timerType} ${counter}`.toString()}
+        </Typography>
 
-      <Typography id="time-left" variant="h2">
-        {formatedDate}
-      </Typography>
-    </Box>
+        <Typography id="time-left" variant="h2" className={classes.time}>
+          {formatedDate}
+        </Typography>
+      </div>
+    </div>
   );
 }
 

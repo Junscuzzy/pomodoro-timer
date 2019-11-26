@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
@@ -10,13 +11,14 @@ import Setter from "../Setter/Setter";
 const useStyles = makeStyles(({ spacing }) => ({
   title: {
     marginTop: spacing(4),
-    marginBottom: spacing(2)
+    marginBottom: spacing(3)
   },
-  buttons: {
+  container: {
     marginBottom: spacing(2),
     width: "100%",
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    flexWrap: "wrap"
   }
 }));
 
@@ -32,25 +34,29 @@ function Header({
   const classes = useStyles();
 
   return (
-    <Box py={2} px={4}>
-      <Typography className={classes.title} component="h1" variant="h3">
+    <>
+      <Typography className={classes.title} component="h1" variant="h4">
         {title}
       </Typography>
-      <Box className={classes.buttons}>
-        <Setter
-          id="break"
-          value={breakLength}
-          increment={incrementBreak}
-          decrement={decrementBreak}
-        />
-        <Setter
-          id="session"
-          value={sessionLength}
-          increment={incrementSession}
-          decrement={decrementSession}
-        />
-      </Box>
-    </Box>
+      <Grid container className={classes.container}>
+        <Grid item xs={6}>
+          <Setter
+            id="break"
+            value={breakLength}
+            increment={incrementBreak}
+            decrement={decrementBreak}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Setter
+            id="session"
+            value={sessionLength}
+            increment={incrementSession}
+            decrement={decrementSession}
+          />
+        </Grid>
+      </Grid>
+    </>
   );
 }
 
