@@ -9,7 +9,7 @@ import Timer from "../Timer/Timer.container";
 import Footer from "../Footer/Footer.container";
 import Audio from "../Audio/Audio.container";
 
-const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
+const useStyles = makeStyles(theme => ({
   "@global": {
     body: {
       margin: 0,
@@ -33,8 +33,8 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
     flexDirection: "column",
     overflow: "hidden",
     margin: "auto",
-    borderRadius: spacing(3),
-    boxShadow: shadows[6]
+    borderRadius: theme.spacing(3),
+    boxShadow: theme.shadows[6]
   }
 }));
 
