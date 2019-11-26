@@ -20,8 +20,11 @@ const initialState = {
   startTime: 25 * MINUTE,
   time: 25 * MINUTE,
   timerType: "session",
-  counter: 1
+  counter: 1,
+  percentage: 0
 };
+
+const percentage = (value, max) => (1 - value / max) * 100;
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -52,7 +55,11 @@ export default (state = initialState, action) => {
         ...initialState
       };
     case UPDATE_TIME:
-      return { ...state, time: action.time };
+      return {
+        ...state,
+        time: action.time,
+        percentage: percentage(action.time, state.startTime)
+      };
     case TOGGLE_TIMER_TYPE:
       let newState = {};
       if (state.timerType === "session") {

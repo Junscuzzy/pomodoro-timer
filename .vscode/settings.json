@@ -19,6 +19,7 @@
         "**/.vscode": true
     },
     "cSpell.words": [
-        "Pomodoro"
+        "Pomodoro",
+        "progressbar"
     ]
 }

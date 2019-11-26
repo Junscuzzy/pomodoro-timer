@@ -1,8 +1,6 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-// import indigo from "@material-ui/core/colors/indigo";
 
 import MondaTtf from "./assets/fonts/Monda/Monda-Regular.ttf";
-import OrbitronTtf from "./assets/fonts/Orbitron/static/Orbitron-Regular.ttf";
 
 const monda = {
   fontFamily: "Monda",
@@ -16,21 +14,12 @@ const monda = {
   `
 };
 
-const orbitron = {
-  fontFamily: "Orbitron",
-  fontStyle: "normal",
-  fontDisplay: "swap",
-  fontWeight: 400,
-  src: `
-      local('Orbitron'),
-      local('Orbitron-Regular'),
-      url(${OrbitronTtf}) format('trueType')
-    `
-};
-
 const theme = createMuiTheme({
   palette: {
     type: "dark",
+    common: {
+      white: "#f8f8f2"
+    },
     primary: {
       main: "#50fa7b",
       contrastText: "#f8f8f2"
@@ -50,7 +39,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        "@font-face": [monda, orbitron]
+        "@font-face": [monda]
       }
     }
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -11,7 +10,8 @@ import Setter from "../Setter/Setter";
 const useStyles = makeStyles(({ spacing }) => ({
   title: {
     marginTop: spacing(4),
-    marginBottom: spacing(3)
+    marginBottom: spacing(3),
+    fontWeight: 700
   },
   container: {
     marginBottom: spacing(2),
